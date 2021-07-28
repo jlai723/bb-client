@@ -1,4 +1,4 @@
-import {React, useEffect, useState} from 'react';
+import { React, useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
@@ -40,6 +40,28 @@ const CharacterCard = (props) => {
   const classes = useStyles()
   const [expanded, setExpanded] = useState(false)
 
+  const resources = {
+    Female_Dragonborn: 'Dragonborn_head.png',
+    Female_Dwarf: 'Female_Dwarf_head.png',
+    Female_Elf: 'Female_Elf_head.png',
+    Female_Gnome: 'Female_Gnome_head.png',
+    Female_HalfElf: 'Female_HalfElf_head.png',
+    Female_Halfling: 'Female_Halfling_head.png',
+    Female_HalfOrc: 'Female_HalfOrc_head.png',
+    Female_Human: 'Female_Human_head.png',
+    Female_Tiefling: 'Female_Tiefling_head.png',
+    Male_Dragonborn: 'Dragonborn_head.png',
+    Male_Dwarf: 'Male_Dwarf_head.png',
+    Male_Elf: 'Male_Elf_head.jpg',
+    Male_Gnome: 'Male_Gnome_head.png',
+    Male_HalfElf: 'Male_HalfElf_head.png',
+    Male_Halfling: 'Male_Halfling_head.png',
+    Male_HalfOrc: 'Male_HalfOrc_head.jpg',
+    Male_Human: 'Male_Human_head.jpg',
+    Male_Tiefling: 'Male_Tiefling_head.jpg',
+    Default: 'Logo.png'
+  }
+
   const deleteCharacter = (character) => {
     fetch(`http://localhost:3000/character/${character.id}`, {
       method: 'DELETE',
@@ -54,68 +76,45 @@ const CharacterCard = (props) => {
     setExpanded(!expanded);
   };
 
-  const CharacterDisplayImage = () => {
-    let charLength = props.character.length
-    if (charLength != 0) {
-        setIsLoaded(true)
 
-        let imgGender = props.character.gender
-        let imgRace = props.character.race
-        console.log(imgGender)
-        console.log(imgRace)
+  const CharacterDisplayImage = (imgGender, imgRace) => {
+    // console.log(props.character.length)
 
-        const resources = {
-            Female_Dragonborn: 'Dragonborn.png',
-            Female_Dwarf: 'Female_Dwarf.png',
-            Female_Elf: 'Female_Elf.png',
-            Female_Gnome: 'Female_Gnome.png',
-            Female_HalfElf: 'Female_HalfElf.png',
-            Female_Halfling: 'Female_Halfling.png',
-            Female_HalfOrc: 'Female_HalfOrc.png',
-            Female_Human: 'Female_Human.png',
-            Female_Tiefling: 'Female_Tiefling.png',
-            Male_Dragonborn: 'Dragonborn.png',
-            Male_Dwarf: 'Male_Dwarf.png',
-            Male_Elf: 'Male_Elf.jpg',
-            Male_Gnome: 'Male_Gnome.png',
-            Male_HalfElf: 'Male_HalfElf.png',
-            Male_Halfling: 'Male_Halfling.png',
-            Male_HalfOrc: 'Male_HalfOrc.jpg',
-            Male_Human: 'Male_Human.jpg',
-            Male_Tiefling: 'Male_Tiefling.jpg',
-            Default: 'Logo.png'
-        }
+    // let charLength = props.character.length
 
-        if (imgGender && imgRace) {
-            let imgLookup = resources[`${imgGender}_${imgRace}`]
-            let imgSrc = imgLookup ? imgLookup : resources.Default
-            setImage("./assets/" + imgSrc)
-        }
+    // if (charLength != 0) {
+      // setIsLoaded(true)
+    //   let imgGender = props.character.gender
+    //   let imgRace = props.character.race
+      // console.log(imgGender)
 
+      if (imgGender && imgRace) {
+        let imgLookup = resources[`${imgGender}_${imgRace}`]
+        let imgSrc = imgLookup ? imgLookup : resources.Default
+        // setImage("./assets/" + imgSrc)
+        // console.log(image)
+        return(
+          "./assets/" + imgSrc
+        )
+      }
     }
-}
-
-useEffect(() => {
-  CharacterDisplayImage()
-  // CharacterDisplayCurrent()
-}, [CharacterDisplayImage])
-
-const characterMapper = () => {
-
   
 
 
-  return props.character.map((character) => {
+
+  const characterMapper = () => {
+    return props.character.map((character) => {
       return (
         <div>
-          <Card className={classes.root} style={{ width: "300px" }}>
+          <Card id="cards" className={classes.root} style={{ width: "300px" }}>
             <CardContent>
               <h3>{character.name}</h3>
             </CardContent>
             <CardMedia>
               {/* className={classes.media}
               image="" */}
-              {isLoaded ? <img src={image} id="image" /> : ""}
+              {/* {console.log(CharacterDisplayImage(character.gender, character.race))} */}
+              <img src={CharacterDisplayImage(character.gender, character.race)} id="cardImage" />
             </CardMedia>
             <CardActions disableSpacing>
               <Button color="warning" onClick={() => { props.editUpdateCharacter(character); props.updateOn() }}>Edit</Button>
@@ -136,29 +135,38 @@ const characterMapper = () => {
               <CardContent>
                 <Typography paragraph>Description:</Typography>
                 <Typography Typography variant="body2" color="textSecondary" component="p">
-                  <li>{character.location}</li>
+                <p>{character.name} is a {character.gender}, {character.age} {character.race}.</p>
+                    <p>{character.name} is located in {character.location}, and their alignment is {character.alignment}.</p>
+                    <p>{character.name} is a {character.profession} and is {character.trait}.</p>
+
+                  {/* <li>{character.location}</li>
                   <li>{character.race}</li>
                   <li>{character.gender}</li>
                   <li>{character.age}</li>
                   <li>{character.alignment}</li>
                   <li>{character.profession}</li>
-                  <li>{character.trait}</li>
+                  <li>{character.trait}</li> */}
                 </Typography>
               </CardContent>
             </Collapse>
           </Card>
         </div>
       )
-    })
-  }
+
+    }
+    )}
+
+  useEffect(() => {
+      CharacterDisplayImage()
+    }, [CharacterDisplayImage])
 
   return (
-    <div>
-      <Grid container spacing={4} className={classes.gridContainer} justify="center">
-        {characterMapper()}
-      </Grid>
-    </div>
-  )
-}
+      <div>
+        <Grid container spacing={4} className={classes.gridContainer} justify="center">
+          {characterMapper()}
+        </Grid>
+      </div>
+    )
+  }
 
-export default CharacterCard;
+  export default CharacterCard;

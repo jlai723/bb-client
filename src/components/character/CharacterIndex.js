@@ -91,6 +91,7 @@ const CharacterIndex = (props) => {
             }
 
             {updateActive ? <CharacterEdit characterToUpdate={characterToUpdate} updateOff={updateOff} token={props.token} fetchCharacters={fetchCharacters} /> : <></>}
+            <div id="bottomSpacer"></div>
 
         </>
     )

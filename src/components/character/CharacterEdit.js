@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody } from 'reactstrap'
+import { Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
 import APIURL from '../../helpers/environment';
 
 const CharacterEdit = (props) => {
@@ -11,10 +11,7 @@ const CharacterEdit = (props) => {
     const [editAlignment, setEditAlignment] = useState(props.characterToUpdate.alignment)
     const [editProfession, setEditProfession] = useState(props.characterToUpdate.profession)
     const [editTrait, setEditTrait] = useState(props.characterToUpdate.trait)
-    const [modal, setModal] = useState(false);
 
-    const toggle = () => setModal(!modal);
-   
 
     const CharacterUpdate = (event, character) => {
         event.preventDefault()
@@ -43,7 +40,7 @@ const CharacterEdit = (props) => {
     }
 
     return (
-        <Modal isOpen={true}>
+        <Modal id="editModal" isOpen={true}>
             <ModalHeader>Edit a Character</ModalHeader>
             <ModalBody>
                 <Form onSubmit={CharacterUpdate}>
@@ -147,10 +144,10 @@ const CharacterEdit = (props) => {
                     </FormGroup>
                     <FormGroup>
                         <Label htmlFor="trait">Edit Trait:</Label>
-                            <Input name="trait" placeholder="Trait" value={editTrait} onChange={(e) => setEditTrait(e.target.value)} />
+                        <Input name="trait" placeholder="Trait" value={editTrait} onChange={(e) => setEditTrait(e.target.value)} />
                     </FormGroup>
-                    <Button type="submit" color="warning">Edit</Button>
-                    <Button color="danger" onClick={toggle}>Cancel</Button>
+                    <Button type="submit" color="warning" id="edit">Edit</Button>
+                    <Button color="danger" id="cancel"  onClick={props.updateOff}>Cancel</Button>
                 </Form>
             </ModalBody>
         </Modal>

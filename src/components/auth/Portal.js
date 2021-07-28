@@ -7,12 +7,14 @@ import {
 
 import Signup from './Signup';
 import Login from './Login';
+import Introduction from './Introduction';
 
 const Portal = (props) => {
     const useStyles = makeStyles(() => ({
         root: {
             display: "flex",
             justifyContent: "center",
+            height: "100vh",
         },
         gridItem: {
             display: "flex",
@@ -21,7 +23,9 @@ const Portal = (props) => {
             backgroundColor: "rgba(230,1,10,0.9)",
             borderRadius: "1rem",
             minHeight: "60vh",
+            maxHeight: "60vh",
             color: "black",
+            marginTop: "12em",
         },
     }))
 
@@ -63,6 +67,9 @@ const Portal = (props) => {
                         updateToken={props.updateToken}
                     />
                 }
+            </Grid>
+            <Grid item xs={5} sm={3} id="intro" className={classes.gridItem}>
+                <Introduction />
             </Grid>
         </Grid>
     )

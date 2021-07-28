@@ -43,8 +43,8 @@ const Navbar = (props) => {
                     {/* <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
                         <MenuIcon />
                     </IconButton> */}
-                    <Typography variant="h5" className={classes.title}>
-                        DnD NPC Database
+                    <Typography variant="h5" className={classes.title} id="title">
+                        D&#038;D NPC GENERATOR
                     </Typography>
                     { props.token ? <Button className={classes.logoutButton} color="inherit" onClick={props.clickLogout}>Logout</Button> : null }
                 </Toolbar>

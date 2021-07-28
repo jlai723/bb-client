@@ -2,12 +2,27 @@
   text-align: center;
   background-color: black;
   background-size: cover;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   color: white;
+  margin-bottom: 20px;
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  overflow-x: hidden;
+}
+
+#title {
+  font-family: 'MedievalSharp', cursive;
+  font-size: 2.5em;
+  font-weight: bolder;
+}
+
+#intro {
+  margin-left: 2em;
 }
 
 #container {
@@ -42,12 +57,37 @@
 #display {
   color: black;
   list-style: none;
+  padding: 10px;
 }
 
 #image {
-  height: 400px;
+  max-width: 400px;
+}
+
+#cardImage {
+  max-height: 200px;
 }
 
 #spacer {
   width: 10px;
+}
+
+#cards {
+  margin: 10px;
+}
+
+#editModal {
+  margin-top: 75px;
+}
+
+#bottomSpacer {
+  height: 50px;
+}
+
+#cancel {
+  margin-left: 10px;
+  margin-top: 10px;
+}
+#edit {
+  margin-top: 10px;
 }

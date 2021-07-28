@@ -55,7 +55,7 @@ const CharacterDisplay = (props) => {
                 Male_HalfElf: 'Male_HalfElf.png',
                 Male_Halfling: 'Male_Halfling.png',
                 Male_HalfOrc: 'Male_HalfOrc.jpg',
-                Male_Human: 'Male_Human.jpg',
+                Male_Human: 'Male_Human.png',
                 Male_Tiefling: 'Male_Tiefling.jpg',
                 Default: 'Logo.png'
             }
