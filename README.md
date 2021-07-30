@@ -1,3 +1,3 @@
 # Dungeons & Dragons NPC Generator
 
-https://bb-client-realfinal.herokuapp.com/
+Final deployed website: https://bb-client-realfinal.herokuapp.com/
